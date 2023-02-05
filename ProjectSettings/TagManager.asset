@@ -10,6 +10,10 @@ TagManager:
   - Obstacle
   - Ground
   - JumpPad
+  - Door
+  - Button
+  - Key
+  - Folder
   layers:
   - Default
   - TransparentFX

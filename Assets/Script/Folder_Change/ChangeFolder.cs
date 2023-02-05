@@ -6,6 +6,8 @@ public class ChangeFolder : MonoBehaviour
 {
     public List<GameObject> folderLevel;
     public List<GameObject> folderTag;
+    int folderLevelCount;
+    int folderTagCount;
 
     private int indexLevel = 0;
 
@@ -18,6 +20,8 @@ public class ChangeFolder : MonoBehaviour
     {
         openFolder(indexLevel);
         selectTag(indexLevel);
+        folderLevelCount = folderLevel.Count;
+        folderTagCount = folderTag.Count;
     }
 
     void Update()
@@ -33,9 +37,21 @@ public class ChangeFolder : MonoBehaviour
         }
     }
 
+    public void DecreaseCount()
+    {
+        folderLevelCount = folderLevel.Count - 1;
+        folderTagCount = folderTag.Count - 1;
+    }
+
+    public void IncreaseCount()
+    {
+        folderLevelCount = folderLevel.Count + 1;
+        folderTagCount = folderTag.Count + 1;
+    }
+
     public void openFolder(int index)
     {
-        for (int i = 0; i < folderLevel.Count; i++)
+        for (int i = 0; i < folderLevelCount; i++)
         {
             if (i == index)
             {
@@ -50,7 +66,7 @@ public class ChangeFolder : MonoBehaviour
 
     public void selectTag(int index)
     {
-        for (int i = 0; i < folderTag.Count; i++)
+        for (int i = 0; i < folderTagCount; i++)
         {
             if (i == index)
             {
@@ -66,7 +82,7 @@ public class ChangeFolder : MonoBehaviour
     // if player press right arrow key
     public void nextFolder()
     {
-        if (indexLevel < folderLevel.Count - 1)
+        if (indexLevel < folderLevelCount - 1)
         {
             indexLevel++;
             openFolder(indexLevel);
@@ -91,7 +107,7 @@ public class ChangeFolder : MonoBehaviour
         }
         else
         {
-            indexLevel = folderLevel.Count - 1;
+            indexLevel = folderLevelCount - 1;
             openFolder(indexLevel);
             selectTag(indexLevel);
         }

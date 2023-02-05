@@ -9,7 +9,11 @@ public class ButtonScript : MonoBehaviour
     [SerializeField] private Sprite up;
     [SerializeField] private Sprite down;
     [SerializeField] private GameObject upLock;
-    [SerializeField] private GameObject downunLock;
+
+    [SerializeField] private bool inverse;
+    [SerializeField] private bool secritFolder;
+    ChangeFolder changeFolder;
+
 
     [SerializeField] private int signal = 0;
     private List<GameObject> recievers;
@@ -24,9 +28,25 @@ public class ButtonScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (secritFolder)
+        {
+            changeFolder = GameObject.FindWithTag("Folder").GetComponent<ChangeFolder>();
+        }
+
         SR = this.GetComponent<SpriteRenderer>();
         pressed = false;
         SR.sprite = up;
+
+        StartCoroutine(SetTheWait());
+    }
+
+    IEnumerator SetTheWait()
+    {
+        yield return new WaitForSeconds(0.1f);
+        if (secritFolder)
+        {
+            changeFolder.DecreaseCount();
+        }
     }
 
     public void OnTriggerStay2D(Collider2D other)
@@ -69,8 +89,20 @@ public class ButtonScript : MonoBehaviour
 
     public void press()
     {
+        if (secritFolder)
+        {
+            changeFolder.IncreaseCount();
+        }
+
         // downunLock.SetActive(true);
-        upLock.SetActive(false);
+        if (inverse)
+        {
+            upLock.SetActive(true);
+        }
+        else
+        {
+            upLock.SetActive(false);
+        }
         GameManager.isUnlock = true;
 
         // foreach (GameObject GO in recievers)
@@ -83,10 +115,22 @@ public class ButtonScript : MonoBehaviour
 
     public void release()
     {
+        if (secritFolder)
+        {
+            changeFolder.DecreaseCount();
+        }
+
         // downunLock.SetActive(false);
-        upLock.SetActive(true);
+        if (inverse)
+        {
+            upLock.SetActive(false);
+        }
+        else
+        {
+            upLock.SetActive(true);
+        }
         GameManager.isUnlock = false;
-        
+
         // foreach (GameObject GO in recievers)
         // {
         //     Debug.Log("RealisingDoor" + GO.GetComponent<DoorScript>().getSignal());
