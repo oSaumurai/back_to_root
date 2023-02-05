@@ -5,6 +5,14 @@ using UnityEngine;
 public class KeyDoor : MonoBehaviour
 {
     public GameObject folderBlock;
+    GameObject lockObj;
+    public Sprite WayPoint;
+    public GameObject path;
+
+    void Start()
+    {
+        lockObj = this.gameObject.transform.GetChild(0).gameObject;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,7 +22,8 @@ public class KeyDoor : MonoBehaviour
             {
                 GameManager.keyCount--;
                 Destroy(folderBlock);
-                Destroy(this.gameObject);
+                path.SetActive(true);
+                lockObj.GetComponent<SpriteRenderer>().sprite = WayPoint;
             }
         }
     }

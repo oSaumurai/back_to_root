@@ -18,6 +18,8 @@ public class ButtonScript : MonoBehaviour
     [SerializeField] private int signal = 0;
     private List<GameObject> recievers;
 
+    PlayerMovement playerMovement;
+
     // public AudioSource PathUnlockedSFX;
 
     void Awake()
@@ -47,6 +49,8 @@ public class ButtonScript : MonoBehaviour
         {
             changeFolder.DecreaseCount();
         }
+        playerMovement = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        playerMovement.hasButton();
     }
 
     public void OnTriggerStay2D(Collider2D other)
@@ -118,6 +122,12 @@ public class ButtonScript : MonoBehaviour
         if (secritFolder)
         {
             changeFolder.DecreaseCount();
+            if (changeFolder.indexLevel == changeFolder.folderLevel.Count-1)
+            {
+                changeFolder.folderLevel[changeFolder.indexLevel].SetActive(false);
+                changeFolder.folderTag[changeFolder.indexLevel].SetActive(false);
+                changeFolder.previousFolder();
+            }
         }
 
         // downunLock.SetActive(false);

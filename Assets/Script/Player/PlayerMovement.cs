@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        GameManager.isUnlock = true;
         nextLevel = GetComponent<NextLevel>();
     }
 
@@ -29,6 +31,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Flip();
+    }
+
+    public void hasButton()
+    {
+        GameManager.isUnlock = false;
     }
 
     private void FixedUpdate()
@@ -64,6 +71,25 @@ public class PlayerMovement : MonoBehaviour
             speed = 0;
             jumpingPower = 0;
             nextLevel.NextScene();
+        }
+
+        if (other.gameObject.CompareTag("movingPlatform"))
+        {
+            this.gameObject.transform.parent = other.gameObject.transform;
+        }
+
+        if (other.gameObject.CompareTag("Death"))
+        {
+            // Reload the scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("movingPlatform"))
+        {
+            this.gameObject.transform.parent = null;
         }
     }
 }

@@ -18,10 +18,21 @@ public class breakPlatManager : MonoBehaviour {
 			Destroy (gameObject);
 	}
 
-	IEnumerator SpawnPlatform(Vector2 spawnPosition)
+
+	public void BreakPlatform(Vector2 spawnPosition1, GameObject caller1)
+	{
+		StartCoroutine (SpawnPlatform(spawnPosition1, caller1));
+	}
+
+	IEnumerator SpawnPlatform(Vector2 spawnPosition, GameObject caller)
 	{
 		yield return new WaitForSeconds (respawnCD);
-		Instantiate (platformPrefab, spawnPosition, platformPrefab.transform.rotation);
+
+
+		GameObject go = Instantiate (platformPrefab, spawnPosition, platformPrefab.transform.rotation);
+
+		// Set the instantiate obj to be a child of the breakPlatManager
+		go.transform.parent = caller.transform;
 	}
 
 }

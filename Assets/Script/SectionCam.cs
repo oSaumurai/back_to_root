@@ -28,7 +28,7 @@ public class SectionCam : MonoBehaviour
             }
             else if (leftOrRight == 2)
             {
-                bg.position = new Vector2(21.95f, bg.position.y);
+                bg.position = new Vector2(24.05f, bg.position.y);
             }
 
             virtualCam.SetActive(true);

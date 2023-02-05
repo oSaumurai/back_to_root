@@ -69,8 +69,12 @@ public class breakThePlatform : MonoBehaviour
                 // Kill the update
                 playerOn = false;
                 Debug.Log("Respawn Breakable Platform");
-                breakPlatManager.Instance.StartCoroutine("SpawnPlatform",
-                    new Vector2(transform.position.x, transform.position.y));
+                // breakPlatManager.Instance.StartCoroutine("SpawnPlatform",
+                //     new Vector2(transform.position.x, transform.position.y),
+                //     transform.parent.gameObject);
+                breakPlatManager.BreakPlatform(new Vector2(transform.position.x, transform.position.y), transform.parent.gameObject);
+
+
                 // Destroy the old platform obj
                 Destroy(this.gameObject, breakPlatManager.respawnCD);
             }

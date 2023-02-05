@@ -6,10 +6,10 @@ public class ChangeFolder : MonoBehaviour
 {
     public List<GameObject> folderLevel;
     public List<GameObject> folderTag;
-    int folderLevelCount;
-    int folderTagCount;
+    public int folderLevelCount;
+    public int folderTagCount;
 
-    private int indexLevel = 0;
+    public int indexLevel = 0;
 
     // if player press q key, -1 index from the folderLevel list, open the current index gameobject, close other gameobject.
     // if player press e key, +1 index from the folderLevel list, open the current index gameobject, close other gameobject.
@@ -18,10 +18,10 @@ public class ChangeFolder : MonoBehaviour
 
     void Start()
     {
-        openFolder(indexLevel);
-        selectTag(indexLevel);
         folderLevelCount = folderLevel.Count;
         folderTagCount = folderTag.Count;
+        openFolder(indexLevel);
+        selectTag(indexLevel);
     }
 
     void Update()
@@ -35,6 +35,14 @@ public class ChangeFolder : MonoBehaviour
         {
             nextFolder();
         }
+
+        // Debug every 4s
+        if (Time.frameCount % 240 == 0)
+        {
+            // Debug.Log("folderLevelCount: " + folderLevelCount);
+            // Debug.Log("folderTagCount: " + folderTagCount);
+            // Debug.Log("indexLevel: " + indexLevel);
+        }
     }
 
     public void DecreaseCount()
@@ -45,8 +53,8 @@ public class ChangeFolder : MonoBehaviour
 
     public void IncreaseCount()
     {
-        folderLevelCount = folderLevel.Count + 1;
-        folderTagCount = folderTag.Count + 1;
+        folderLevelCount = folderLevel.Count;
+        folderTagCount = folderTag.Count;
     }
 
     public void openFolder(int index)
