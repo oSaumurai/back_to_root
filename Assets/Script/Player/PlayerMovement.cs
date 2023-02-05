@@ -12,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    NextLevel nextLevel;
+
+    void Start()
+    {
+        nextLevel = GetComponent<NextLevel>();
+    }
 
     void Update()
     {
@@ -53,10 +59,11 @@ public class PlayerMovement : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (other.gameObject.CompareTag("Goal"))
+        if (other.gameObject.CompareTag("Goal") && GameManager.isUnlock)
         {
             speed = 0;
             jumpingPower = 0;
+            nextLevel.NextScene();
         }
     }
 }

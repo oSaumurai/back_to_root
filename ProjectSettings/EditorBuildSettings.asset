@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 67b3610fa1d84a6478850450ff6309b6
+  - enabled: 1
+    path: Assets/Scenes/IntroLevel.unity
+    guid: 5737d9aecbea4af4b91657b9b3a3b7aa
+  - enabled: 1
+    path: Assets/Scenes/PlayLevel.unity
+    guid: 23fff8aeab99b944e9c7e14196f258ad
   m_configObjects: {}

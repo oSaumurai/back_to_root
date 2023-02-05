@@ -8,6 +8,9 @@ public class ButtonScript : MonoBehaviour
     private SpriteRenderer SR;
     [SerializeField] private Sprite up;
     [SerializeField] private Sprite down;
+    [SerializeField] private GameObject upLock;
+    [SerializeField] private GameObject downunLock;
+
     [SerializeField] private int signal = 0;
     private List<GameObject> recievers;
 
@@ -66,22 +69,30 @@ public class ButtonScript : MonoBehaviour
 
     public void press()
     {
-        foreach (GameObject GO in recievers)
-        {
-            Debug.Log("PressingDoor" + GO.GetComponent<DoorScript>().getSignal());
-            Debug.Log("PressingReciever" + GO.GetComponent<RecieverScript>().getSignal());
-            GO.GetComponent<RecieverScript>().triggerPress();
-        }
+        // downunLock.SetActive(true);
+        upLock.SetActive(false);
+        GameManager.isUnlock = true;
+
+        // foreach (GameObject GO in recievers)
+        // {
+        //     Debug.Log("PressingDoor" + GO.GetComponent<DoorScript>().getSignal());
+        //     Debug.Log("PressingReciever" + GO.GetComponent<RecieverScript>().getSignal());
+        //     GO.GetComponent<RecieverScript>().triggerPress();
+        // }
     }
 
     public void release()
     {
-        foreach (GameObject GO in recievers)
-        {
-            Debug.Log("RealisingDoor" + GO.GetComponent<DoorScript>().getSignal());
-            Debug.Log("RealisingReciever" + GO.GetComponent<RecieverScript>().getSignal());
-            GO.GetComponent<RecieverScript>().triggerRelease();
-        }
+        // downunLock.SetActive(false);
+        upLock.SetActive(true);
+        GameManager.isUnlock = false;
+        
+        // foreach (GameObject GO in recievers)
+        // {
+        //     Debug.Log("RealisingDoor" + GO.GetComponent<DoorScript>().getSignal());
+        //     Debug.Log("RealisingReciever" + GO.GetComponent<RecieverScript>().getSignal());
+        //     GO.GetComponent<RecieverScript>().triggerRelease();
+        // }
     }
 
     public int getSignal()

@@ -22,12 +22,12 @@ public class ChangeFolder : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             previousFolder();
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             nextFolder();
         }
