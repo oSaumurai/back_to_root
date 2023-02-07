@@ -8,6 +8,8 @@ public class jumpPad : MonoBehaviour
     public Animator anim;
     // public AudioSource JumpPadSFX;
 
+    public AudioSource JumpPadSFX;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -17,7 +19,7 @@ public class jumpPad : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // JumpPadSFX.Play();
+            JumpPadSFX.PlayOneShot(JumpPadSFX.clip);
             anim.SetBool("Jump", true);
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * bounce, ForceMode2D.Impulse);
             StartCoroutine(JumpPadWait());

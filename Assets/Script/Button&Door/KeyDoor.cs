@@ -9,6 +9,8 @@ public class KeyDoor : MonoBehaviour
     public Sprite WayPoint;
     public GameObject path;
 
+    public AudioSource audioSource;
+
     void Start()
     {
         lockObj = this.gameObject.transform.GetChild(0).gameObject;
@@ -20,6 +22,7 @@ public class KeyDoor : MonoBehaviour
         {
             if (GameManager.keyCount > 0)
             {
+                audioSource.PlayOneShot(audioSource.clip);
                 GameManager.keyCount--;
                 Destroy(folderBlock);
                 path.SetActive(true);

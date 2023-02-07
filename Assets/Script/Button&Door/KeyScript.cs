@@ -6,10 +6,11 @@ public class KeyScript : MonoBehaviour
 {
 
     bool singleton_check = false;
+    GameManager gameManager;
 
     void Start()
     {
-
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -19,6 +20,7 @@ public class KeyScript : MonoBehaviour
             singleton_check = true;
         
             GameManager.keyCount++;
+            gameManager.PlayKeySound();
 
             Destroy(this.gameObject);
         }

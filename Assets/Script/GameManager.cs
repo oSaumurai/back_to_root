@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     public static int keyCount = 0;
     public static bool isUnlock = false;
 
+    AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,5 +23,10 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
+
+    public void PlayKeySound()
+    {
+        audioSource.PlayOneShot(audioSource.clip);
     }
 }

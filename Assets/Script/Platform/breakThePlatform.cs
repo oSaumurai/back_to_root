@@ -13,6 +13,8 @@ public class breakThePlatform : MonoBehaviour
     private bool playerOn = false;
     private float colorAlpha = 1;
 
+    public AudioSource PlatformBreakingSFX;
+
     // public AudioSource PlatformBreakingSFX;
 
     // Start is called before the first frame update
@@ -43,6 +45,8 @@ public class breakThePlatform : MonoBehaviour
             }
             else // When time is up, disconnect the join and explode
             {
+                PlatformBreakingSFX.PlayOneShot(PlatformBreakingSFX.clip);
+
                 GetComponent<BoxCollider2D>().enabled = false;
                 GetComponent<PolygonCollider2D>().enabled = false;
 

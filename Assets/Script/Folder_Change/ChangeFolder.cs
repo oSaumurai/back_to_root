@@ -9,6 +9,8 @@ public class ChangeFolder : MonoBehaviour
     public int folderLevelCount;
     public int folderTagCount;
 
+    public AudioSource audioSource;
+
     public int indexLevel = 0;
 
     // if player press q key, -1 index from the folderLevel list, open the current index gameobject, close other gameobject.
@@ -92,15 +94,16 @@ public class ChangeFolder : MonoBehaviour
     {
         if (indexLevel < folderLevelCount - 1)
         {
+            audioSource.PlayOneShot(audioSource.clip);
             indexLevel++;
             openFolder(indexLevel);
             selectTag(indexLevel);
         }
         else
         {
-            indexLevel = 0;
-            openFolder(indexLevel);
-            selectTag(indexLevel);
+            // indexLevel = 0;
+            // openFolder(indexLevel);
+            // selectTag(indexLevel);
         }
     }
 
@@ -109,15 +112,16 @@ public class ChangeFolder : MonoBehaviour
     {
         if (indexLevel > 0)
         {
+            audioSource.PlayOneShot(audioSource.clip);
             indexLevel--;
             openFolder(indexLevel);
             selectTag(indexLevel);
         }
         else
         {
-            indexLevel = folderLevelCount - 1;
-            openFolder(indexLevel);
-            selectTag(indexLevel);
+            // indexLevel = folderLevelCount - 1;
+            // openFolder(indexLevel);
+            // selectTag(indexLevel);
         }
     }
 }

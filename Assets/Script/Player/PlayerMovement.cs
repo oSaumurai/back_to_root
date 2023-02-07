@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     NextLevel nextLevel;
 
+    public AudioSource audioSource;
+
     void Start()
     {
         GameManager.isUnlock = true;
@@ -27,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
+            audioSource.PlayOneShot(audioSource.clip);
             rb.AddForce(Vector2.up * jumpingPower, ForceMode2D.Impulse);
         }
 
